@@ -14,6 +14,12 @@ namespace CardGame.API.Controllers
 			_logger = logger;
 		}
 
+		[HttpGet(Name = "Hello")]
+		public IActionResult SayHello()
+		{
+			return Ok("Hello");
+		}
+
 		[HttpPost(Name = "SimulateCards/V1")]
 		public IActionResult SimulatedCards([FromBody]List<string> items)
 		{
