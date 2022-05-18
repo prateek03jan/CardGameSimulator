@@ -15,6 +15,7 @@ namespace CardGame.Business.BC
 	public class CardSimulation
 	{
 		private CardCollection _cardCollection;
+
 		public CardSimulation(List<string> items)
 		{
 			if (items == null) throw new ArgumentNullException("Card numbers are required");
