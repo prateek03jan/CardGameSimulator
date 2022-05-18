@@ -1,8 +1,19 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+const string CORS_ALLOW_ALL = "CORSALLOWALL";
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy(name: CORS_ALLOW_ALL,
+					  policy =>
+					  {
+						  policy.WithOrigins("*")
+						  .AllowAnyHeader()
+						  .AllowAnyMethod();
+					  });
+});
 
 var app = builder.Build();
 
@@ -16,7 +27,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
+app.UseCors(CORS_ALLOW_ALL);
 
 app.MapControllerRoute(
 	name: "default",
