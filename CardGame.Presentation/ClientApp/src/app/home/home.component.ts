@@ -90,6 +90,7 @@ export class HomeComponent implements OnInit {
     'RT',
     'PT',
   ];
+
   isValidationPassed: boolean = false;
   SIMULATE_CARD_API!: string;
   cards: Card[] = [];
@@ -97,6 +98,7 @@ export class HomeComponent implements OnInit {
   userData: string = '2C,4H,10S,4T';
   userCardData: string[] = [];
   displayCardData: Card[] = [];
+  _matSnackBar: MatSnackBar;
 
   cardFormControl = new FormControl('', [Validators.required]);
 
@@ -107,6 +109,7 @@ export class HomeComponent implements OnInit {
     private _snackBar: MatSnackBar,
     @Inject('BASE_URL') baseUrl: string
   ) {
+    this._matSnackBar = this._snackBar;
     this.SIMULATE_CARD_API = baseUrl + 'cardgame';
   }
 
@@ -128,7 +131,6 @@ export class HomeComponent implements OnInit {
 
   onModelChanged($event: any): void {
     let items: string[] = $event.split(',');
-    console.log(this.validString($event));
     if (this.validString($event)) {
       this.userCardData = items;
       this.updateDisplayCardData(this.userCardData);
@@ -138,7 +140,6 @@ export class HomeComponent implements OnInit {
   updateDisplayCardData(items: string[]): void {
     this.displayCardData = [];
     items.forEach((element) => {
-      let x: string = element.trim();
       let card: Card = new Card(element.trim());
       this.displayCardData.push(card);
     });
