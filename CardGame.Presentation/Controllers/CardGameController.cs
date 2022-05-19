@@ -29,10 +29,6 @@ namespace CardGame.API.Controllers
 			}
 			else
 			{
-				//List<string> input = new List<string>()
-				//{
-				//	"3C", "JS", "2D", "PT", "10H", "KH", "8S", "4T", "AC", "4H", "RT", "2T"
-				//};
 				_cardGame = new CardSimulation(items);
 				var result = _cardGame.Simulate();
 				return Ok(result);				
