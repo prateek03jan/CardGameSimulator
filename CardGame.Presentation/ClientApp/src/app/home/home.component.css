@@ -78,3 +78,18 @@
 .trump {
   color: #b88953;
 }
+
+.loader {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.overlay-content {
+  position: absolute;
+    top: 35%;
+    left: calc(100vh);
+    width: 100%;
+    text-align: center;
+}

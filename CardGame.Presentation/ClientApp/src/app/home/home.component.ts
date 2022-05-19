@@ -3,11 +3,9 @@ import { DataService } from '../service/data.service';
 import { Card } from '../models/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
-  AbstractControl,
   FormControl,
   FormGroupDirective,
   NgForm,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
