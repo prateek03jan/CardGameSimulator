@@ -17,3 +17,40 @@
 .button-row .mat-button-base {
   margin: 8px 8px 8px 0;
 }
+
+.child {
+  width: 50%;
+  display: inline-block;
+}
+
+.error {
+  font-size: larger;
+  color: #ae1211;
+}
+
+.success {
+  display: flex;
+}
+
+.playing-card {
+  height: 20%;
+  border: 1px solid #ccc;
+  width: 15%;
+  height: 100px;
+  margin: 0px 10px;
+}
+
+.card-number {
+  position: relative;
+  bottom: 0;
+  left: 5px;
+  font-size: 40px;
+  top: -15px;
+}
+
+.suite {
+  position: relative;
+  font-size: 40px;
+  margin-left: 30px;
+  top: -10px;
+}
