@@ -28,34 +28,53 @@
   color: #ae1211;
 }
 
-.success {
-  /* display: flex; */
-}
-
 .playing-card {
   display: inline-block;
-  height: 20%;
   border: 1px solid #ccc;
-  width: 15%;
-  height: 100px;
+  width: 20%;
+  height: 130px;
   margin: 0px 10px;
+  box-shadow: 0px 0px 7px 1px #ccc;
+  border-radius: 3px;
 }
 
 .card-number {
+  font-size: 45px;
+  top: -20px;
   position: relative;
-  bottom: 0;
-  left: 5px;
-  font-size: 40px;
-  top: -15px;
+  left: 3px;
 }
 
 .suite {
-  position: relative;
-  font-size: 40px;
+  font-size: 60px;
+}
+
+.suite > div {
+  display: inline-block;
   margin-left: 30px;
-  top: -10px;
+  top: 0;
 }
 
 .result-header {
   text-align: center;
+}
+
+.heart,
+.diamond {
+  color: #c01919;
+}
+
+.info-button {
+  position: relative;
+  top: -6px;
+  left: -30px;
+}
+
+.spade,
+.club {
+  color: #222;
+}
+
+.trump {
+  color: #b88953;
 }

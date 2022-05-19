@@ -1,4 +1,4 @@
-<div class="parent">
+<div class="row">
   <div class="child col-md-6">
     <form class="form">
       <mat-form-field class="full-width" appearance="fill">
@@ -12,14 +12,32 @@
           [ngModel]="userData"
           (ngModelChange)="onModelChanged($event)"
         />
-        <mat-hint>Enter cards with comma separated value</mat-hint>
+        <mat-hint
+          >Enter cards with comma separated value
+          <span *ngIf="displayCardData.length > 0"
+            >({{ displayCardData.length }} card<span
+              *ngIf="displayCardData.length > 1"
+              >s</span
+            >
+            entered)</span
+          ></mat-hint
+        >
         <mat-error *ngIf="cardFormControl.hasError('required')">
           Card sequence is <strong>required</strong>
         </mat-error>
       </mat-form-field>
       <section class="error" *ngIf="!isValidationPassed">
-        Wrong/No card is entered. Allowed cards are
-        <span *ngFor="let c of allowedCardValues"> [{{ c }}] </span>
+        <div class="row">
+          <div class="col-md-9">Wrong/No card is entered... Click to show</div>
+          <button
+            matTooltip="Click for info"
+            (click)="showDescriptiveErrorMessage()"
+            mat-icon-button
+            class="info-button"
+          >
+            <mat-icon>info</mat-icon>
+          </button>
+        </div>
       </section>
       <section *ngIf="cardFormControl.valid && isValidationPassed">
         <div class="button-row">
@@ -30,27 +48,27 @@
       </section>
       <section *ngIf="isValidationPassed" class="success col-md-12">
         <div *ngFor="let m of displayCardData" class="playing-card">
-          <div class="suite" *ngIf="m.suite === 'S'">
+          <div class="suite spade" *ngIf="m.suite === 'S'">
             <div>
               <i class="bi bi-suit-spade-fill"></i>
             </div>
           </div>
-          <div class="suite" *ngIf="m.suite === 'C'">
+          <div class="suite club" *ngIf="m.suite === 'C'">
             <div>
               <i class="bi bi-suit-club-fill"></i>
             </div>
           </div>
-          <div class="suite" *ngIf="m.suite === 'H'">
+          <div class="suite heart" *ngIf="m.suite === 'H'">
             <div>
               <i class="bi bi-suit-heart-fill"></i>
             </div>
           </div>
-          <div class="suite" *ngIf="m.suite === 'D'">
+          <div class="suite diamond" *ngIf="m.suite === 'D'">
             <div>
               <i class="bi bi-suit-diamond-fill"></i>
             </div>
           </div>
-          <div class="suite" *ngIf="m.suite === 'T'">
+          <div class="suite trump" *ngIf="m.suite === 'T'">
             <div>
               <i class="bi bi-align-top"></i>
             </div>
@@ -62,38 +80,40 @@
   </div>
 
   <div class="child col-md-6">
-    <section>
-      <h1 class="result-header">Play in this order</h1>
-    </section>
-    <div class="card-container">
-      <div *ngFor="let m of cards" class="playing-card">
-        <div class="suite" *ngIf="m.suite === 'S'">
-          <div>
-            <i class="bi bi-suit-spade-fill"></i>
+    <form class="form" *ngIf="cards != undefined && cards.length > 0">
+      <section>
+        <h1 class="result-header">Play in this order</h1>
+      </section>
+      <div class="card-container">
+        <div *ngFor="let m of cards" class="playing-card">
+          <div class="suite spade" *ngIf="m.suite === 'S'">
+            <div>
+              <i class="bi bi-suit-spade-fill"></i>
+            </div>
           </div>
-        </div>
-        <div class="suite" *ngIf="m.suite === 'C'">
-          <div>
-            <i class="bi bi-suit-club-fill"></i>
+          <div class="suite club" *ngIf="m.suite === 'C'">
+            <div>
+              <i class="bi bi-suit-club-fill"></i>
+            </div>
           </div>
-        </div>
-        <div class="suite" *ngIf="m.suite === 'H'">
-          <div>
-            <i class="bi bi-suit-heart-fill"></i>
+          <div class="suite heart" *ngIf="m.suite === 'H'">
+            <div>
+              <i class="bi bi-suit-heart-fill"></i>
+            </div>
           </div>
-        </div>
-        <div class="suite" *ngIf="m.suite === 'D'">
-          <div>
-            <i class="bi bi-suit-diamond-fill"></i>
+          <div class="suite diamond" *ngIf="m.suite === 'D'">
+            <div>
+              <i class="bi bi-suit-diamond-fill"></i>
+            </div>
           </div>
-        </div>
-        <div class="suite" *ngIf="m.suite === 'T'">
-          <div>
-            <i class="bi bi-align-top"></i>
+          <div class="suite trump" *ngIf="m.suite === 'T'">
+            <div>
+              <i class="bi bi-align-top"></i>
+            </div>
           </div>
+          <div class="card-number">{{ m.number }}</div>
         </div>
-        <div class="card-number">{{ m.number }}</div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
