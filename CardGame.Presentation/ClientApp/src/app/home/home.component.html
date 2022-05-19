@@ -1,5 +1,5 @@
 <div class="parent">
-  <div class="child">
+  <div class="child col-md-6">
     <form class="form">
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>Enter card sequence separated by comma</mat-label>
@@ -28,7 +28,7 @@
           </button>
         </div>
       </section>
-      <section *ngIf="isValidationPassed" class="success">
+      <section *ngIf="isValidationPassed" class="success col-md-12">
         <div *ngFor="let m of displayCardData" class="playing-card">
           <div class="suite" *ngIf="m.suite === 'S'">
             <div>
@@ -61,10 +61,38 @@
     </form>
   </div>
 
-  <div class="child">
+  <div class="child col-md-6">
+    <section>
+      <h1 class="result-header">Play in this order</h1>
+    </section>
     <div class="card-container">
-      <div *ngFor="let card of cards">
-        {{ card.value }}
+      <div *ngFor="let m of cards" class="playing-card">
+        <div class="suite" *ngIf="m.suite === 'S'">
+          <div>
+            <i class="bi bi-suit-spade-fill"></i>
+          </div>
+        </div>
+        <div class="suite" *ngIf="m.suite === 'C'">
+          <div>
+            <i class="bi bi-suit-club-fill"></i>
+          </div>
+        </div>
+        <div class="suite" *ngIf="m.suite === 'H'">
+          <div>
+            <i class="bi bi-suit-heart-fill"></i>
+          </div>
+        </div>
+        <div class="suite" *ngIf="m.suite === 'D'">
+          <div>
+            <i class="bi bi-suit-diamond-fill"></i>
+          </div>
+        </div>
+        <div class="suite" *ngIf="m.suite === 'T'">
+          <div>
+            <i class="bi bi-align-top"></i>
+          </div>
+        </div>
+        <div class="card-number">{{ m.number }}</div>
       </div>
     </div>
   </div>
