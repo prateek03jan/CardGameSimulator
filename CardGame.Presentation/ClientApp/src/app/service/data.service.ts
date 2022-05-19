@@ -7,13 +7,11 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DataService {
+  SIMULATE_CARD_URL: string = '';
   constructor(private http: HttpClient) {}
 
-  sayhello(url: string) {
-    return this.http.get(url);
-  }
-
   simulateCardGame(items: string[], url: string): Observable<any> {
+    this.SIMULATE_CARD_URL = url;
     return this.http.post(url, items);
   }
 }
