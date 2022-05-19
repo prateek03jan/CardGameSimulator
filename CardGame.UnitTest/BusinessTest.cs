@@ -1,7 +1,9 @@
 using CardGame.Business.BC;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Assert = NUnit.Framework.Assert;
 
 namespace CardGame.UnitTest
 {
@@ -15,9 +17,22 @@ namespace CardGame.UnitTest
 		}
 
 		[Test]
+		public void TestForExceptionIfNoCardComes()
+		{
+			Assert.Throws<ArgumentNullException>(() => new CardSimulation(null));
+		}
+
+		[Test]
+		public void TestIfAnEmptyStringPresentInList()
+		{
+			List<string> cards = new List<string>() { "     ", "       ", "2D", "PT", "10H", "KH", "8S", "4T", "AC", "4H", "RT" };
+			Assert.Throws(typeof(ArgumentNullException), () => new CardSimulation(cards));
+		}
+
+		[Test]
 		public void TestForProperSort()
 		{
-			List<string> cards = new List<string>() { "3C", "JS", "2D", "PT", "10H", "KH", "8S", "4T", "AC", "4H", "RT"};
+			List<string> cards = new List<string>() { "3C", "JS", "2D", "PT", "10H", "KH", "8S", "4T", "AC", "4H", "RT" };
 			cardSimulation = new CardSimulation(cards);
 			var sortedOrder = cardSimulation.Simulate();
 

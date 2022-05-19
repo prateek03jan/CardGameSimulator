@@ -18,7 +18,10 @@ namespace CardGame.Business.BC
 
 		public CardSimulation(List<string> items)
 		{
-			if (items == null) throw new ArgumentNullException("Card numbers are required");
+			if (items == null)
+			{
+				throw new ArgumentNullException("Card numbers are required");
+			}
 
 			items.ForEach(item =>
 			{
