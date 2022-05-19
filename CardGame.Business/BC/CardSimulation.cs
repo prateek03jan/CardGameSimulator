@@ -64,7 +64,7 @@ namespace CardGame.Business.BC
 		{
 			foreach (var item in cardStrings)
 			{
-				Add(new Card(item));
+				Add(new Card(item.Trim()));
 			}
 		}
 

@@ -3,11 +3,9 @@ import { DataService } from '../service/data.service';
 import { Card } from '../models/card';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
-  AbstractControl,
   FormControl,
   FormGroupDirective,
   NgForm,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -115,12 +113,13 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   simulate() {
+    this.cards = [];
     this.isLoaderShown = true;
     this.dataService
       .simulateCardGame(this.userCardData, this.SIMULATE_CARD_API)
       .subscribe((res) => {
         res.forEach((element: string) => {
-          let c: Card = new Card(element);
+          let c: Card = new Card(element.trim());
           this.cards.push(c);
         });
         this.isLoaderShown = false;
