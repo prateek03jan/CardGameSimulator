@@ -1,7 +1,21 @@
-
-  <div *ngFor="let card of cards">
-      <div>
-          {{card.value}}
-      </div>
-  </div>
-
+<form class="form">
+  <mat-form-field class="full-width" appearance="fill">
+    <mat-label>Enter card sequence separated by comma</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="cardFormControl"
+      [errorStateMatcher]="matcher"
+      placeholder="2H, 3C"
+    />
+    <mat-hint>Enter items like 2H, 3C, 4T, PT and so on!</mat-hint>
+    <mat-error *ngIf="cardFormControl.hasError('required')">
+      Card sequence is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <section *ngIf="cardFormControl.valid">
+    <div class="button-row">
+      <button mat-flat-button color="primary">Primary</button>
+    </div>
+  </section>
+</form>

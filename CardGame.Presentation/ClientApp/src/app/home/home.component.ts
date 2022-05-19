@@ -1,6 +1,21 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from '../service/data.service';
 import { Card } from '../models/card';
+import {
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-home',
@@ -8,9 +23,13 @@ import { Card } from '../models/card';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  private SIMULATE_CARD_API!: string;
-  private cards: Card[] = [];
+  SIMULATE_CARD_API!: string;
+  cards: Card[] = [];
   isLoaderShown: boolean = false;
+
+  cardFormControl = new FormControl('', [Validators.required]);
+
+  matcher = new MyErrorStateMatcher();
 
   constructor(
     private dataService: DataService,
